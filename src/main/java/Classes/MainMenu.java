@@ -10,8 +10,9 @@ public class MainMenu {
         boolean exit = false;
         do {
             int battlesPlayed = 0;
-            Player player1 = new Player("Leader 1");
-            Player player2 = new Player("Leader 2");
+            Graveyard graveyard = new Graveyard();
+            Player player1 = new Player("Leader 1", graveyard);
+            Player player2 = new Player("Leader 2", graveyard);
 
             // 1. SHOW GAME INTRO
             showIntro();
@@ -20,11 +21,11 @@ public class MainMenu {
             setPlayer(player1);
             setPlayer(player2);
 
-            // 3. START BATTLES AND SHOW RESULTS
+            // 3. START BATTLES AND SHOW RESULTS + SHOW GRAVEYARD
             showBattlesIntro();
 
             do {
-                battlesPlayed = battle(battlesPlayed, player1, player2);
+                battlesPlayed = battle(battlesPlayed, player1, player2, graveyard);
             } while(player1.getParty().size() > 0 && player2.getParty().size() > 0);
 
             // 4. DECLARE A WINNER
@@ -104,7 +105,7 @@ public class MainMenu {
     }
 
     // BATTLE
-    public static int battle(int battlesPlayed, Player p1, Player p2) {
+    public static int battle(int battlesPlayed, Player p1, Player p2, Graveyard graveyard) {
         System.out.println("***************************************************");
         System.out.println("BATTLE " + (battlesPlayed+1));
         System.out.println("***************************************************");
@@ -134,7 +135,7 @@ public class MainMenu {
                 System.out.println(p1.getCurrentCombatant().getName() + " from " + p1.getName() + "'s party has won this battle. Congratulations!" );
                 p1.winBattle();
                 System.out.println(p2.getName() + "'s party lost his fighter " + p2.getCurrentCombatant().getName());
-                p2.getParty().remove(p2.getCurrentCombatant());
+                p2.loseBattle();
                 // TAKE TO GRAVEYARD -----------------------------------------------------------------------------------------------!
 
                 break;
@@ -143,7 +144,7 @@ public class MainMenu {
                 System.out.println(p2.getCurrentCombatant().getName() + " from " + p2.getName() + "'s party has won this battle. Congratulations!" );
                 p2.winBattle();
                 System.out.println(p1.getName() + "'s party lost his fighter " + p1.getCurrentCombatant().getName());
-                p1.getParty().remove(p1.getCurrentCombatant());
+                p1.loseBattle();
                 // TAKE TO GRAVEYARD -----------------------------------------------------------------------------------------------!
 
                 break;
@@ -157,21 +158,21 @@ public class MainMenu {
         System.out.println("\t---------------------------------------------------------------------");
         System.out.println("\t" + p1.getName() +  "'s party has won " + p1.getBattlesWon() + " battles and has " + p1.getParty().size() + " members");
         System.out.println("\t" + p2.getName() +  "'s party has won " + p2.getBattlesWon() + " battles and has " + p2.getParty().size() + " members");
+        showGraveyard(graveyard);
         System.out.println("\t---------------------------------------------------------------------");
         MenuHelp.askForEnter("\nPress \"ENTER\" to continue...");
         return battlesPlayed + 1;
     }
-
-        /* *********************************************************************************
-            MISSING METHODS: see graveyard???-------------------------------------------------------------------------------------------!!!
-
-        ********************************************************************************* */
 
     public static void selectCombatants(Player p) {
         System.out.println("Who will be the brave combatants this time for " + p.getName() + "?");
         p.setCurrentCombatant(MenuHelp.selectOption(p.getName() + ", please select the combatant you want to fight for your party:", p.getParty()));
         System.out.println("Good choice " + p.getName() + "!");
         System.out.println("\n");
+    }
+    public static void showGraveyard(Graveyard graveyard) {
+        System.out.println("\n\tThere are " + graveyard.getGraveyard().size() + " fighters in the graveyard: ");
+        MenuHelp.printList(graveyard.getGraveyard());
     }
 
     // DECLARE A WINNER
