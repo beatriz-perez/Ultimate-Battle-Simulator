@@ -2,13 +2,15 @@ package Classes;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class GameUtils {
 
     private final int MAX_CHAR = 10;
 
-    public int random (int min, int max){
+    public static int random (int min, int max){
         int randomNumber = ((int) Math.floor(Math.random() * (max - min + 1) + min));
         return randomNumber;
     }
@@ -137,9 +139,16 @@ public class GameUtils {
             }
         }
         scanner.close();
-
         return csvParty;
     }
+    public static void exportToCsv(List<Character> party) throws IOException {
+        FileWriter writer = new FileWriter("Party.txt",true);
+        for (int i = 0; i < party.size(); i++) {
+            writer.write(party.get(i)+" \n");
+        }
+        writer.close();
+    }
+
 }
 
 
