@@ -1,5 +1,6 @@
 package Classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -7,14 +8,15 @@ public class Player {
     // Properties
     private String name;
     private List<Character> party;
-    private List<Character> graveyard;
     private Character currentCombatant;
     private int battlesWon;
+    private Graveyard graveyard;
 
     // Constructors
-    public Player(String name) {
+    public Player(String name, Graveyard graveyard) {
         this.name = name;
         this.battlesWon = 0;
+        this.graveyard = graveyard;
     }
 
     //METHODS:
@@ -23,7 +25,7 @@ public class Player {
     }
     public void loseBattle() {
         this.getParty().remove(this.getCurrentCombatant());
-        this.getGraveyard().add(this.getCurrentCombatant());
+        graveyard.addFighter(this.getCurrentCombatant());
     }
 
     // Setters
@@ -39,8 +41,6 @@ public class Player {
         return name;
     }
     public List<Character> getParty() {return party; }
-
-    public List<Character> getGraveyard() {return graveyard; }
 
     public int getBattlesWon() {return battlesWon; }
     public Character getCurrentCombatant() {return currentCombatant; }
