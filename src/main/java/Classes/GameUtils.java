@@ -26,18 +26,15 @@ public class GameUtils {
         List<Character> randomParty = new ArrayList<>();
         while(randomParty.size() <= wizardNumber) {
             Wizard wizardAux = new Wizard();
-
             // the contains method calls to equals method that has been changed in character class
             if(randomParty.contains(wizardAux)){
                 String[] name = wizardAux.getName().split(" ");
                 wizardAux.setName( name[1] + " Jr.");
             }
             randomParty.add(wizardAux);
-
         }
         while(randomParty.size() <= warriorNumber + wizardNumber){
             Warrior warriorAux = new Warrior();
-
             if(randomParty.contains(warriorAux)){
                 String[] name = warriorAux.getName().split(" ");
                 warriorAux.setName( name[1] + " Jr.");
@@ -59,27 +56,27 @@ public class GameUtils {
         System.out.println("Insert the number of wizards ");
         int wizardsNumber = scanner.nextInt();
         List<Character> customizedParty = new ArrayList<>();
-        while (customizedParty.size() <= warriorsNumber) {
+        while (customizedParty.size() < warriorsNumber) {
             System.out.println("Write the warrior's name");
-            String warriorName = scanner.nextLine();
+            String warriorName = scanner.next();
             for(int i = 0; i < customizedParty.size(); i ++){
                 if(warriorName.equals(customizedParty.get(i).getName())){
                     warriorName = warriorName + "Jr";
                 }
             }
-            System.out.println("Insert health points");
+            System.out.println("Insert health (between 100-200 points)");
             int warriorHp = scanner.nextInt();
             while (warriorHp < 100 || warriorHp > 200) {
                 System.err.println("health points must be a number between 100-200 ");
                 warriorHp = scanner.nextInt();
             }
-            System.out.println("Insert stamina value");
+            System.out.println("Insert stamina value (between 10-50 points)");
             int stamina = scanner.nextInt();
             while (stamina < 10 || stamina > 50) {
                 System.err.println("Stamina must be a number between 10-50 ");
                 stamina = scanner.nextInt();
             }
-            System.out.println("Insert strength value");
+            System.out.println("Insert strength value (between 1-10 points)");
             int strength = scanner.nextInt();
             while (strength < 1 || strength > 10) {
                 System.err.println("Strength must be a number between 1-10 ");
@@ -87,27 +84,27 @@ public class GameUtils {
             }
             customizedParty.add(new Warrior(warriorName, warriorHp, stamina, strength));
         }
-        while (customizedParty.size() <= warriorsNumber + wizardsNumber) {
+        while (customizedParty.size() < warriorsNumber + wizardsNumber) {
             System.out.println("write the wizard's name");
-            String wizardName = scanner.nextLine();
+            String wizardName = scanner.next();
             for(int i = 0; i < customizedParty.size(); i ++){
                 if(wizardName.equals(customizedParty.get(i).getName())){
                     wizardName = wizardName + "Jr";
                 }
             }
-            System.out.println("Insert health points");
+            System.out.println("Insert health (between 50-100 points)");
             int wizardHp = scanner.nextInt();
             while (wizardHp < 50 || wizardHp > 100) {
                 System.err.println("health points must be a number between 100-200 ");
                 wizardHp = scanner.nextInt();
             }
-            System.out.println("Insert mana value");
+            System.out.println("Insert mana value (between 10-50 points)");
             int mana = scanner.nextInt();
             while (mana < 10 || mana > 50) {
                 System.err.println("Mana must be a number between 10-50 ");
                 mana = scanner.nextInt();
             }
-            System.out.println("Insert intelligence value");
+            System.out.println("Insert intelligence value (between 1-10 points)");
             int intelligence = scanner.nextInt();
             while (intelligence < 1 || intelligence > 10) {
                 System.err.println("Intelligence must be a number between 1-10 ");
@@ -115,7 +112,7 @@ public class GameUtils {
             }
             customizedParty.add(new Wizard(wizardName, wizardHp, mana, intelligence));
         }
-        scanner.close();
+
         return customizedParty;
     }
 
@@ -138,7 +135,7 @@ public class GameUtils {
                 csvParty.add(new Wizard(charData[1], Integer.parseInt(charData[2]), Integer.parseInt(charData[3]), Integer.parseInt(charData[4])));
             }
         }
-        scanner.close();
+
         return csvParty;
     }
     public static void exportToCsv(List<Character> party) throws IOException {
