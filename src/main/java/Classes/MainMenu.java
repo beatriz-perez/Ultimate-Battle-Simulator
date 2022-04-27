@@ -2,12 +2,13 @@ package Classes;
 
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class MainMenu {
 
     // SHOW MAIN MENU
-    public static void showMainMenu() throws FileNotFoundException {
+    public static void showMainMenu() {
         boolean exit = false;
         do {
             int battlesPlayed = 0;
@@ -52,7 +53,7 @@ public class MainMenu {
     }
 
     // CREATE PLAYERS AND PARTIES
-    public static void setPlayer(Player player) throws FileNotFoundException {
+    public static void setPlayer(Player player) {
 
         // Set player's name:
         player.setName(MenuHelp.askForString(player.getName() + ", please introduce your name"));
@@ -85,7 +86,12 @@ public class MainMenu {
                 System.out.println("\t***************************************************");
                 System.out.println("\tImporting party using a CSV file...");
                 System.out.println("\t***************************************************");
-                player.setParty(partyGenerator.createCsvParty());
+                try{
+                    player.setParty(partyGenerator.createCsvParty());
+                } catch (FileNotFoundException ex) {
+                    System.out.println("File not found, we will create your party manually");
+                    player.setParty(partyGenerator.createCustomizedParty());
+                }
                 break;
             default:
                 System.out.println("\nOption not available.");
@@ -206,7 +212,12 @@ public class MainMenu {
         switch(selected){
             case 0:
                 System.out.println("Great, we have saved it to a csv file!");
-                GameUtils.exportToCsv(party);
+                try{
+                    GameUtils.exportToCsv(party);
+                } catch (IOException ex) {
+                    System.out.println("Oops, looks like they need a rest... the file could not be created");
+                }
+
                 break;
             case 1:
                 System.out.println("You're right, they've already worked a lot!");
