@@ -14,7 +14,7 @@ public class Warrior extends Character implements Attacker {
     private final int minStrength = 1;
     private final int maxStrength = 10;
 
-
+    //    Constructor for customized parties.
     public Warrior(String name, int hp, int stamina, int strength) {
         super(name, hp);
         setName(name);
@@ -36,36 +36,14 @@ public class Warrior extends Character implements Attacker {
         this.stamina = stamina;
         setStrength(strength);
     }
+
+    //    Constructor for randomized parties.
     public Warrior() {
         String[] names = {"If", "Tyunn", "Aun", "Tyorgrirn", "Vorrus", "Grafralf", "Raslerd", "Thrunskulr", "Eirkmuvoth", "Stappaekkag"};
-        setName(names[random(0, names.length - 1)]);
-        super.setHp(random(minHp, maxHp));
-        this.stamina = random(minStamina, maxStamina);
-        this.strength = random(minStrength, maxStrength);
-    }
-
-    public Warrior(String[] csvData) {
-        super(csvData);
-        setName(csvData[2]);
-        int newHp = Integer.parseInt(csvData[3]);
-        if (newHp > maxHp) {
-            newHp = maxHp;
-        } else if (newHp < minHp) {
-            newHp = minHp;
-        } else {
-            newHp = newHp;
-        }
-        super.setHp(newHp);
-        int newStamina = (Integer.parseInt(csvData[4]));
-        if (newStamina > maxStamina) {
-            newStamina = maxStamina;
-        } else if (newStamina < minStamina) {
-            newStamina = minStamina;
-        } else {
-            newStamina = newStamina;
-        }
-        this.stamina = newStamina;
-        setStrength(Integer.parseInt(csvData[5]));
+        setName(names[GameUtils.random(0, names.length - 1)]);
+        super.setHp(GameUtils.random(minHp, maxHp));
+        this.stamina = GameUtils.random(minStamina, maxStamina);
+        this.strength = GameUtils.random(minStrength, maxStrength);
     }
 
     public void setName(String name) {
@@ -84,6 +62,7 @@ public class Warrior extends Character implements Attacker {
         return strength;
     }
 
+    //    Modify the setter so that the strength is inside de range required.
     public void setStrength(int strength) {
         if (strength > maxStrength) {
             strength = maxStrength;
@@ -95,6 +74,7 @@ public class Warrior extends Character implements Attacker {
         this.strength = strength;
     }
 
+    //    Warrior's attack
     public int attack() {
         int damage = 0;
         if (stamina >= 5) {

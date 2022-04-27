@@ -14,7 +14,7 @@ public class Wizard extends Character implements Attacker {
     private final int minIntelligence = 1;
     private final int maxIntelligence = 50;
 
-
+    //    Constructor for customized parties.
     public Wizard(String name, int hp, int mana, int intelligence) {
         super(name, hp);
         setName(name);
@@ -36,36 +36,14 @@ public class Wizard extends Character implements Attacker {
         this.mana = mana;
         setIntelligence(intelligence);
     }
+
+    //    Constructor for randomized parties.
     public Wizard() {
         String[] names = {"Urhan", "Ejamar", "Qrutrix", "Oruxeor", "Ushan", "Ugovras", "Igoxium", "Ataz", "Ilrolius", "Azadium"};
-        setName(names[random(0, names.length - 1)]);
-        super.setHp(random(minHp, maxHp));
-        this.mana = random(minMana, maxMana);
-        this.intelligence = random(minIntelligence, maxIntelligence);
-    }
-
-    public Wizard(String[] csvData) {
-        super(csvData);
-        setName(csvData[2]);
-        int newHp = Integer.parseInt(csvData[3]);
-        if (newHp > maxHp) {
-            newHp = maxHp;
-        } else if (newHp < minHp) {
-            newHp = minHp;
-        } else {
-            newHp = newHp;
-        }
-        super.setHp(newHp);
-        int newMana = Integer.parseInt(csvData[4]);
-        if (newMana > maxMana) {
-            newMana = maxMana;
-        } else if (newMana < minMana) {
-            newMana = minMana;
-        } else {
-            newMana = newMana;
-        }
-        this.mana = newMana;
-        setIntelligence(Integer.parseInt(csvData[5]));
+        setName(names[GameUtils.random(0, names.length - 1)]);
+        super.setHp(GameUtils.random(minHp, maxHp));
+        this.mana = GameUtils.random(minMana, maxMana);
+        this.intelligence = GameUtils.random(minIntelligence, maxIntelligence);
     }
 
     public void setName(String name) {
@@ -84,6 +62,7 @@ public class Wizard extends Character implements Attacker {
         return intelligence;
     }
 
+    //    Modify the setter so that the intelligence is inside de range required.
     public void setIntelligence(int intelligence) {
         if (intelligence > maxIntelligence) {
             intelligence = maxIntelligence;
@@ -95,6 +74,7 @@ public class Wizard extends Character implements Attacker {
         this.intelligence = intelligence;
     }
 
+    //    Wizard's attack
     public int attack() {
         int damage = 0;
         if (mana >= 5) {

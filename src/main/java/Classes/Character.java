@@ -7,7 +7,7 @@ public abstract class Character {
     private boolean isAlive;
     private static int characterCounter;
 
-
+    //    Constructor for customized parties.
     public Character(String name, int hp) {
         characterCounter++;
         this.id = characterCounter;
@@ -16,19 +16,11 @@ public abstract class Character {
         this.isAlive = true;
     }
 
+    //    Constructor for randomized parties.
     public Character() {
         characterCounter++;
         this.id = characterCounter;
         this.isAlive = true;
-    }
-
-    public Character(String[] csvData) {
-        characterCounter++;
-        this.id = characterCounter;
-        this.name = csvData[2];
-        this.hp = Integer.parseInt(csvData[3]);
-        this.isAlive = true;
-
     }
 
     public int getId() {
@@ -48,8 +40,13 @@ public abstract class Character {
         return hp;
     }
 
+    //    Modify the setter so that there's no negative health points.
     public void setHp(int hp) {
-        this.hp = hp;
+        if (hp < 0) {
+            this.hp = 0;
+        } else {
+            this.hp = hp;
+        }
     }
 
     public boolean isAlive() {
@@ -64,23 +61,20 @@ public abstract class Character {
         setHp(getHp() - damage);
         return getHp();
     }
-    public int random(int min, int max) {
-        int randomNumber = ((int) Math.floor(Math.random() * (max - min + 1) + min));
-        return randomNumber;
-    }
 
-    public String toString (){
-        return "Character { "+
+    public String toString() {
+        return "Character { " +
                 "id : " + id +
                 ", name : '" + name + '\'' +
                 ", hp : " + hp +
                 ", isAlive : " + isAlive +
                 '}';
     }
-    public boolean equals (Object o){
-        if(this.name.equals(((Character)o).getName())){
+
+    public boolean equals(Object o) {
+        if (this.name.equals(((Character) o).getName())) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
