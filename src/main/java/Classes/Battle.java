@@ -7,12 +7,12 @@ public class Battle {
 
     // Method to show initial log
     public void initialLog(Character fighter) {
-        if (fighter instanceof Warrior) {
+        if (fighter instanceof Warrior) { // If is a warrior
             System.out.println(fighter.getName());
             System.out.println("You have " + fighter.getHp() + " healthy points");
             System.out.println(((Warrior) fighter).getStamina() + " of stamina");
             System.out.println(((Warrior) fighter).getStrength() + " of strength");
-        } else if (fighter instanceof Wizard) {
+        } else if (fighter instanceof Wizard) { // If is a wizard
             System.out.println(fighter.getName());
             System.out.println("You have " + + fighter.getHp() + " healthy points");
             System.out.println(((Wizard) fighter).getMana() + " of mana");
@@ -22,10 +22,10 @@ public class Battle {
 
     // Method to show final log
     public void finalLog(Character fighter) {
-        if (fighter instanceof Warrior) {
+        if (fighter instanceof Warrior) { // If is a warrior
             System.out.println(fighter.getName());
             System.out.println("You ended the battle with " + + fighter.getHp() + " healthy points" + " and " + ((Warrior) fighter).getStamina() + " of stamina");
-        } else if (fighter instanceof Wizard) {
+        } else if (fighter instanceof Wizard) { // If is a wizard
             System.out.println(fighter.getName());
             System.out.println("You ended the battle with " + + fighter.getHp() + " healthy points" + "and " + ((Wizard) fighter).getMana() + " of mana");
         }
@@ -33,12 +33,12 @@ public class Battle {
 
     // Method to show attack log
     public void attackLog(Character fighter, int damage) {
-        if (fighter instanceof Warrior) {
+        if (fighter instanceof Warrior) { // If is a warrior
             System.out.println(fighter.getName() + " you have been attack and lost " + damage + " healthy points");
             System.out.println("Your current status is...");
             System.out.println("Healthy Points: " + fighter.getHp());
             System.out.println("Stamina: " + ((Warrior) fighter).getStamina());
-        } else if (fighter instanceof Wizard) {
+        } else if (fighter instanceof Wizard) { // If is a wizard
             System.out.println(fighter.getName() + " you have been attack and lost " + damage + " healthy points");
             System.out.println("Your current status is...");
             System.out.println("Healthy Points: " + fighter.getHp());
@@ -57,6 +57,7 @@ public class Battle {
         System.out.println("Good luck fighters!");
         MenuHelp.askForEnter("\nPress \"ENTER\" to continue...");
 
+        // While one of the fighters is alive
         while (fighter1.isAlive() || fighter2.isAlive()) {
             // Numbers of the round
             System.out.println("\n****** Round " + rounds + " ******");
@@ -66,9 +67,10 @@ public class Battle {
                 damage1 = ((Warrior) fighter1).attack(); // Damage caused by fighter 1
                 damage2 = ((Warrior) fighter2).attack(); // Damage caused by fighter 2
 
-                fighter1.setHp(fighter1.getHp() - damage2); // We subtract the damage to the healthy points
-                fighter2.setHp(fighter2.getHp() - damage1);
+                fighter1.decreaseHp(damage2); // Subtract the damage to the healthy points
+                fighter2.decreaseHp(damage1);
 
+                // Show the log of the attacks
                 System.out.println();
                 attackLog(fighter1, damage2);
                 System.out.println();
@@ -79,9 +81,10 @@ public class Battle {
                 damage1 = ((Warrior) fighter1).attack(); // Damage caused by fighter 1
                 damage2 = ((Wizard) fighter2).attack(); // Damage caused by fighter 2
 
-                fighter1.setHp(fighter1.getHp() - damage2); // We subtract the damage to the healthy points
-                fighter2.setHp(fighter2.getHp() - damage1);
+                fighter1.decreaseHp(damage2); // Subtract the damage to the healthy points
+                fighter2.decreaseHp(damage1);
 
+                // Show the log of the attacks
                 System.out.println();
                 attackLog(fighter1, damage2);
                 System.out.println();
@@ -92,9 +95,10 @@ public class Battle {
                 damage1 = ((Wizard) fighter1).attack(); // Damage caused by fighter 1
                 damage2 = ((Wizard) fighter2).attack(); // Damage caused by fighter 2
 
-                fighter1.setHp(fighter1.getHp() - damage2); // We subtract the damage to the healthy points
-                fighter2.setHp(fighter2.getHp() - damage1);
+                fighter1.decreaseHp(damage2); // Subtract the damage to the healthy points
+                fighter2.decreaseHp(damage1);
 
+                // Show the log of the attacks
                 System.out.println();
                 attackLog(fighter1, damage2);
                 System.out.println();
@@ -105,9 +109,10 @@ public class Battle {
                 damage1 = ((Wizard) fighter1).attack(); // Damage caused by fighter 1
                 damage2 = ((Warrior) fighter2).attack(); // Damage caused by fighter 2
 
-                fighter1.setHp(fighter1.getHp() - damage2); // We subtract the damage to the healthy points
-                fighter2.setHp(fighter2.getHp() - damage1);
+                fighter1.decreaseHp(damage2); // Subtract the damage to the healthy points
+                fighter2.decreaseHp(damage1);
 
+                // Show the log of the attacks
                 System.out.println();
                 attackLog(fighter1, damage2);
                 System.out.println();
@@ -119,6 +124,7 @@ public class Battle {
                 System.out.println("\n****** Game Over ******");
                 System.out.println("This is the end of the battle, your final statuses are...");
 
+                // Show the final log
                 finalLog(fighter1);
                 System.out.println("=============================");
                 finalLog(fighter2);
@@ -127,6 +133,8 @@ public class Battle {
                 fighter1.setAlive(false); // setAlive to false of fighter1
                 System.out.println("\n****** Game Over ******");
                 System.out.println("This is the end of the battle, your final statuses are...");
+
+                // Show the final log
                 finalLog(fighter1);
                 System.out.println("=============================");
                 finalLog(fighter2);
@@ -135,6 +143,8 @@ public class Battle {
                 fighter2.setAlive(false); //setAlive to false of fighter2
                 System.out.println("\n****** Game Over ******");
                 System.out.println("This is the end of the battle, your final statuses are...");
+
+                // Show the final log
                 finalLog(fighter1);
                 System.out.println("=============================");
                 finalLog(fighter2);
