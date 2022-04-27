@@ -193,8 +193,6 @@ public class MainMenu {
         System.out.println("\n");
         System.out.println("Congratulations " + winner.getName() + " for you are the final winner!!!");
         System.out.println("\n");
-        System.out.println("Congratulations " + winner.getName() + " for you are the final winner!!!");
-        System.out.println("\n");
         exportOrContinue(winner.getParty());
 
     }
