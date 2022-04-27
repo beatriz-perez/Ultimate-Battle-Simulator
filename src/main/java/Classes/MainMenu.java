@@ -2,6 +2,7 @@ package Classes;
 
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class MainMenu {
 
@@ -28,7 +29,7 @@ public class MainMenu {
                 battlesPlayed = battle(battlesPlayed, player1, player2, graveyard);
             } while(player1.getParty().size() > 0 && player2.getParty().size() > 0);
 
-            // 4. DECLARE A WINNER
+            // 4. DECLARE A WINNER + EXPORT WINNER PARTY
             declareWinner(battlesPlayed, player1, player2);
 
             // 5. END GAME OR START AGAIN
@@ -186,9 +187,33 @@ public class MainMenu {
         System.out.println("\n");
         System.out.println("Congratulations " + winner.getName() + " for you are the final winner!!!");
         System.out.println("\n");
+        System.out.println("Congratulations " + winner.getName() + " for you are the final winner!!!");
+        System.out.println("\n");
+        exportOrContinue(winner.getParty());
+
     }
 
-    // END / RESTART
+
+    // export party
+    public static void exportOrContinue(List<Character> party){
+
+        String[] partyOptions = new String[2];
+        partyOptions[0] = "Export winner party";
+        partyOptions[1] = "Let them break ranks";
+
+        boolean result = false;
+        int selected = MenuHelp.selectOption("Yours is certainly a valuable party... would you like to export it for future adventures?", partyOptions);
+        switch(selected){
+            case 0:
+                System.out.println("Great, we have saved it to a csv file!");
+                GameUtils.exportToCsv(party);
+                break;
+            case 1:
+                System.out.println("You're right, they've already worked a lot!");
+                break;
+
+        }
+    }
     public static boolean endOrRestart(){
 
         String[] partyOptions = new String[2];
