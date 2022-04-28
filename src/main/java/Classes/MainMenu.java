@@ -42,7 +42,7 @@ public class MainMenu {
     // SHOW GAME INTRO
     public static void showIntro() {
         System.out.println("\n");
-        System.out.println("---------------------------- Hello players! -----------------------------");
+        System.out.println(TextColor.PURPLE + "---------------------------- Hello players! -----------------------------" + TextColor.RESET);
         System.out.println("------------------------------ welcome to -------------------------------");
         System.out.println("--------------------- THE ULTIMATE BATTLE SIMULATOR ---------------------");
         System.out.println("\n");
