@@ -50,9 +50,9 @@ public class GameUtils {
      * @return
      */
     public List<Character> createCustomizedParty() {
-        int warriorsNumber = MenuHelp.askForInt("Insert the number of warriors");
+        int warriorsNumber = MenuHelp.askForIntInRange("Insert the number of warriors (1 to 100)", 1, 100);
 
-        int wizardsNumber = MenuHelp.askForInt("Insert the number of wizards");
+        int wizardsNumber = MenuHelp.askForIntInRange("Insert the number of wizards (1 to 100)", 1, 100);
 
         List<Character> customizedParty = new ArrayList<>();
 
