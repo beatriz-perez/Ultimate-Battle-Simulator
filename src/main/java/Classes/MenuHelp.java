@@ -25,7 +25,7 @@ public class MenuHelp {
         System.out.println("\n" + instruction);
         printList(optionsList);
         //Ask for selected option
-        int response = askForIntInRange("\n-> Type a number from 1 to " + (optionsList.length), 1, 4);
+        int response = askForIntInRange("\n-> Type a number from 1 to " + (optionsList.length), 1, optionsList.length);
         //Show selected option
         if (response > 0 && response < optionsList.length + 1) {
             System.out.println("You have selected option " + response + ": " + optionsList[response - 1] + "\n");
@@ -38,7 +38,7 @@ public class MenuHelp {
         System.out.println("\n" + instruction);
         printList(optionsList);
         //Ask for selected option
-        int response = askForIntInRange("\n-> Type a number from 1 to " + (optionsList.size()), 1, optionsList.size() + 1);
+        int response = askForIntInRange("\n-> Type a number from 1 to " + optionsList.size(), 1, optionsList.size());
         //Show selected option
         if (response > 0 && response < optionsList.size() + 1) {
             System.out.println("You have selected option " + response + ": " + optionsList.get(response - 1).getName() + "\n");
