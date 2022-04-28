@@ -22,6 +22,8 @@ public class TextColor {
     public static final String YELLOW = "\033[0;33m";
     public static final String YELLOW_BRIGHT = "\033[0;93m";
     public static final String YELLOW_BOLD_BRIGHT = "\033[1;93m";
+
+    public static final String ORANGE_BRIGHT = "\u001b[38;5;208m";
     // CYAN
     public static final String CYAN = "\033[0;36m";
 
