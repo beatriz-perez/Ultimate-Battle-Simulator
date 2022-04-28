@@ -42,11 +42,12 @@ public class MainMenu {
     // SHOW GAME INTRO
     public static void showIntro() {
         System.out.println("\n");
-        System.out.println("--------------------------- Hello players! ----------------------------");
-        System.out.println("----------------------------- welcome to ------------------------------");
-        System.out.println("-------------------- THE ULTIMATE BATTLE SIMULATOR --------------------");
+        System.out.println("---------------------------- Hello players! -----------------------------");
+        System.out.println("------------------------------ welcome to -------------------------------");
+        System.out.println("--------------------- THE ULTIMATE BATTLE SIMULATOR ---------------------");
         System.out.println("\n");
-        System.out.println(" **** We warn you it is an adventure only for the most courageous **** ");
+        Arts.printCastle();
+        System.out.println(" ***** We warn you it is an adventure only for the most courageous ***** ");
         System.out.println("\n");
         MenuHelp.askForEnter("Press \"ENTER\" to continue...");
         System.out.println("Let's start by introducing the leaders of each of the fighting parties");
@@ -108,6 +109,7 @@ public class MainMenu {
         System.out.println("\n");
         System.out.println("Looks like we are all set now, so...");
         System.out.println("Let the battles begin!!!");
+        Arts.printSwords();
         MenuHelp.askForEnter("Press \"ENTER\" to continue...");
     }
 
@@ -179,6 +181,7 @@ public class MainMenu {
     }
     public static void showGraveyard(Graveyard graveyard) {
         System.out.println("\n\tThere are " + graveyard.getGraveyard().size() + " fighters in the graveyard: ");
+        Arts.printTombs();
         MenuHelp.printList(graveyard.getGraveyard());
     }
 
