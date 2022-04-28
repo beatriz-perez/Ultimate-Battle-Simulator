@@ -84,7 +84,11 @@ public class Warrior extends Character implements Attacker {
             return damage;
         } else {
             System.out.println(getName() + " performed a " + getStrength() / 2 + " point Weak attack");
-            damage = strength / 2;
+            if(strength == 1){
+                damage = strength;
+            }
+            else{
+            damage = strength / 2;}
             stamina = stamina + 1;
             return damage;
         }
