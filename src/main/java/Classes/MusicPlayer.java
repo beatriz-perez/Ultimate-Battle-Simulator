@@ -1,14 +1,8 @@
-
 package Classes;
-
 
 import java.io.File;
 import java.io.IOException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 
 public class MusicPlayer {
 
@@ -17,6 +11,8 @@ public class MusicPlayer {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("epic_battle_music_1-6275.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-30.0f); // Reduce volume by 30 decibels
             clip.start();
         } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             System.out.println("Error with playing sound.");
