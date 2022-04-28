@@ -42,12 +42,17 @@ public class MainMenu {
     // SHOW GAME INTRO
     public static void showIntro() {
         System.out.println("\n");
+        System.out.print(TextColor.PURPLE);
         System.out.println("---------------------------- Hello players! -----------------------------");
         System.out.println("------------------------------ welcome to -------------------------------");
+        System.out.print(TextColor.PURPLE_BRIGHT);
         System.out.println("--------------------- THE ULTIMATE BATTLE SIMULATOR ---------------------");
+        System.out.print(TextColor.BLUE);
         System.out.println("\n");
         Arts.printCastle();
+        System.out.print(TextColor.BLUE_BRIGHT);
         System.out.println(" ***** We warn you it is an adventure only for the most courageous ***** ");
+        System.out.print(TextColor.RESET);
         System.out.println("\n");
         MenuHelp.askForEnter("Press \"ENTER\" to continue...");
         System.out.println("Let's start by introducing the leaders of each of the fighting parties");
@@ -58,7 +63,9 @@ public class MainMenu {
 
         // Set player's name:
         player.setName(MenuHelp.askForString(player.getName() + ", please introduce your name"));
+        System.out.print(TextColor.WHITE_BRIGHT);
         System.out.println("We salute you Leader " + player.getName());
+        System.out.print(TextColor.RESET);
 
         // Set player's party:
         String[] partyOptions = new String[3];
@@ -67,7 +74,10 @@ public class MainMenu {
         partyOptions[2] = "Import a party using a CSV file";
 
         int selected = MenuHelp.selectOption("Please select the way you want to create your party:", partyOptions);
+        System.out.print(TextColor.WHITE_BRIGHT);
         System.out.println("Let's get this party started!!!!");
+        System.out.print(TextColor.RESET);
+
 
         GameUtils partyGenerator = new GameUtils();
         switch(selected){
@@ -100,7 +110,9 @@ public class MainMenu {
         // Show player's party:
         System.out.println("\tFighters added:");
         MenuHelp.printList(player.getParty());
+        System.out.print(TextColor.WHITE_BRIGHT);
         System.out.println("\nParty completed. Good job " + player.getName() + "!!!!");
+        System.out.print(TextColor.RESET);
         System.out.println("\n");
     }
 
@@ -108,29 +120,39 @@ public class MainMenu {
     public static void showBattlesIntro() {
         System.out.println("\n");
         System.out.println("Looks like we are all set now, so...");
+        System.out.print(TextColor.YELLOW_BRIGHT);
+        System.out.println("\n");
         System.out.println("Let the battles begin!!!");
+        System.out.println("\n");
         Arts.printSwords();
+        System.out.print(TextColor.RESET);
         MenuHelp.askForEnter("Press \"ENTER\" to continue...");
     }
 
     // BATTLE
     public static int battle(int battlesPlayed, Player p1, Player p2, Graveyard graveyard) {
+        System.out.print(TextColor.YELLOW_BRIGHT);
         System.out.println("***************************************************");
         System.out.println("BATTLE " + (battlesPlayed+1));
         System.out.println("***************************************************");
+        System.out.print(TextColor.RESET);
 
         // Select combatants
         selectCombatants(p1);
         selectCombatants(p2);
 
         System.out.println("\n");
+        System.out.print(TextColor.WHITE_BRIGHT);
         System.out.println("You have selected your combatant on both sides...");
         System.out.println("Combatants get ready, the battle starts now!");
+        System.out.print(TextColor.RESET);
         MenuHelp.askForEnter("Press \"ENTER\" to continue...");
 
         // Start battle:
+        System.out.print(TextColor.YELLOW_BRIGHT);
         Battle battle = new Battle();
         int battleResult = battle.initBattle(p1.getCurrentCombatant(), p2.getCurrentCombatant());
+        System.out.print(TextColor.RESET);
 
         // Show result + declare battle winner
         switch(battleResult){
@@ -141,7 +163,9 @@ public class MainMenu {
                 break;
             case 1:
                 System.out.println("\n");
+                System.out.print(TextColor.WHITE_BOLD_BRIGHT);
                 System.out.println(p1.getCurrentCombatant().getName() + " from " + p1.getName() + "'s party has won this battle. Congratulations!" );
+                System.out.print(TextColor.RESET);
                 p1.winBattle();
                 System.out.println(p2.getName() + "'s party lost his fighter " + p2.getCurrentCombatant().getName());
                 p2.loseBattle();
@@ -174,15 +198,20 @@ public class MainMenu {
     }
 
     public static void selectCombatants(Player p) {
+        System.out.print(TextColor.WHITE_BRIGHT);
         System.out.println("Who will be the brave combatants this time for " + p.getName() + "?");
+        System.out.print(TextColor.RESET);
         p.setCurrentCombatant(MenuHelp.selectOption(p.getName() + ", please select the combatant you want to fight for your party:", p.getParty()));
         System.out.println("Good choice " + p.getName() + "!");
         System.out.println("\n");
     }
     public static void showGraveyard(Graveyard graveyard) {
         System.out.println("\n\tThere are " + graveyard.getGraveyard().size() + " fighters in the graveyard: ");
+        System.out.print(TextColor.RED_BRIGHT);
         Arts.printTombs();
+        System.out.print(TextColor.RED);
         MenuHelp.printList(graveyard.getGraveyard());
+        System.out.print(TextColor.RESET);
     }
 
     // DECLARE A WINNER
@@ -191,11 +220,17 @@ public class MainMenu {
         Player winner = p1.getParty().size() > 0 ? p1 : p2;
 
         System.out.println("\n");
+        System.out.print(TextColor.GREEN);
         System.out.println("After " + battlesPlayed + " great battles one of the parties has run out of members.");
         System.out.println("This means the war has ended and we have a winner...");
         System.out.println("\n");
+        Arts.fireWorks();
+        System.out.print(TextColor.GREEN_BOLD_BRIGHT);
         System.out.println("Congratulations " + winner.getName() + " for you are the final winner!!!");
+        System.out.print(TextColor.GREEN);
+        Arts.fireWorks();
         System.out.println("\n");
+        System.out.print(TextColor.RESET);
         exportOrContinue(winner.getParty());
 
     }
