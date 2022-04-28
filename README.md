@@ -12,18 +12,30 @@ The game will run until one of the parties loses all its members and a winner is
 
 ## Technical aspects
 
-The game is entirely based on the MainMenu class and its showMainMenu() method. This method uses     The Battle class . MenuHelp class Graveyard class Player class 
+The game is entirely based on the MainMenu class and its showMainMenu() method. This method contains the structure of the whole game and uses every method inside the project, both from the same class and outside the class. The methods inside the same class are mostly related to the usability of the game and guiding the user through the game.
 
-Battle class contains all the methods regarding a battle between 2 fighters: 
+The methods contained in MenuHelp class ask and receive information from the user or show information to the user.
 
-GameUtils class contains different method's regarding to parties: both for creating different types of parties and for exporting a party.
+Player class is referred to the user, its profile inside the game and the methods linked to it.
+
+Graveyard class contains all the methods involved with the graveyard.
+
+Battle class is referred to all the methods regarding a battle between 2 fighters: both the ones that keep track of the battle log and the act of battling itself.
+
+GameUtils class contains different methods regarding parties: both for creating different types of parties and for exporting a party.
 
 Warrior and Wizard classes are Character's extended classes and both implement Attacker interface. The only differences between them are the stats ranges and the way of attacking.  
 
+The methods in Arts class have inside them all the drawings illustrate the game.
+
+MusicPlayer class contains a music player so that music plays while using the game.
+
+TextColor class is a library of different colors for the log to be printed out.
 
 
 
-*This battle simulator is developed using java.*
+
+*This battle simulator was developed using java.*
 
 A project by Núria Mafé, Olatz Izagirre, Paula Kamisato and Beatriz Pérez.
 
