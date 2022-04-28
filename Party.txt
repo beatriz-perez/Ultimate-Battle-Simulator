@@ -1,0 +1,1 @@
+Character { id : 2, name : 'Warrior To', hp : 5, isAlive : true} 

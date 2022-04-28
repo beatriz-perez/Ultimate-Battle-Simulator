@@ -31,9 +31,23 @@ public class Arts {
     public static void printTombs() {
         System.out.println("\t      ,-=-.       ______     _");
         System.out.println("\t     /  +  \\     />----->  _|R|_");
-        System.out.println("\t     | ~~~ |    // -/- /  |_ I _|");
-        System.out.println("\t     |R.I.P|   //  /  /     |P|");
-        System.out.println("\t\\vV,,|_____|V,//_____/VvV,v,|_|/,,vhjwv/,");
+        System.out.println("\t     | ~~~ |    /  -/- /  |_ I _|");
+        System.out.println("\t     |R.I.P|   /   /  /     |P|");
+        System.out.println("\t\\vV,,|_____|V,/______/VvV,v,|_|/,,vhjwv/,");
+        System.out.println("\n");
+
+    }
+    public static void fireWorks() {
+        System.out.println("                                   .''.       \n" +
+                "       .''.      .        *''*    :_\\/_:     . \n" +
+                "      :_\\/_:   _\\(/_  .:.*_\\/_*   : /\\ :  .'.:.'.\n" +
+                "  .''.: /\\ :   ./)\\   ':'* /\\ * :  '..'.  -=:o:=-\n" +
+                " :_\\/_:'.:::.    ' *''*    * '.\\'/.' _\\(/_'.':'.'\n" +
+                " : /\\ : :::::     *_\\/_*     -= o =-  /)\\    '  *\n" +
+                "  '..'  ':::'     * /\\ *     .'/.\\'.   '\n" +
+                "      *            *..*         :\n" +
+                "        *\n" +
+                "        *");
         System.out.println("\n");
 
     }
