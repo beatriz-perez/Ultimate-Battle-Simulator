@@ -50,66 +50,43 @@ public class GameUtils {
      * @return
      */
     public List<Character> createCustomizedParty() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Insert the number of warriors");
-        int warriorsNumber = scanner.nextInt();
-        System.out.println("Insert the number of wizards ");
-        int wizardsNumber = scanner.nextInt();
+        int warriorsNumber = MenuHelp.askForIntInRange("Insert the number of warriors (1 to 100)", 1, 100);
+
+        int wizardsNumber = MenuHelp.askForIntInRange("Insert the number of wizards (1 to 100)", 1, 100);
+
         List<Character> customizedParty = new ArrayList<>();
+
         while (customizedParty.size() < warriorsNumber) {
-            System.out.println("Write the warrior's name");
-            String warriorName = scanner.next();
+            String warriorName = MenuHelp.askForString("Write the warrior's name");
+
             for(int i = 0; i < customizedParty.size(); i ++){
                 if(warriorName.equals(customizedParty.get(i).getName())){
                     warriorName = warriorName + "Jr";
                 }
             }
-            System.out.println("Insert health (between 100-200 points)");
-            int warriorHp = scanner.nextInt();
-            while (warriorHp < 100 || warriorHp > 200) {
-                System.err.println("health points must be a number between 100-200 ");
-                warriorHp = scanner.nextInt();
-            }
-            System.out.println("Insert stamina value (between 10-50 points)");
-            int stamina = scanner.nextInt();
-            while (stamina < 10 || stamina > 50) {
-                System.err.println("Stamina must be a number between 10-50 ");
-                stamina = scanner.nextInt();
-            }
-            System.out.println("Insert strength value (between 1-10 points)");
-            int strength = scanner.nextInt();
-            while (strength < 1 || strength > 10) {
-                System.err.println("Strength must be a number between 1-10 ");
-                strength = scanner.nextInt();
-            }
+            int warriorHp = MenuHelp.askForIntInRange("Insert health (between 100-200 points)", 100, 200);
+
+            int stamina = MenuHelp.askForIntInRange("Insert stamina value (between 10-50 points)", 10, 50);
+
+            int strength = MenuHelp.askForIntInRange("Insert strength value (between 1-10 points)", 1, 10);
+
             customizedParty.add(new Warrior(warriorName, warriorHp, stamina, strength));
         }
         while (customizedParty.size() < warriorsNumber + wizardsNumber) {
-            System.out.println("write the wizard's name");
-            String wizardName = scanner.next();
+            String wizardName = MenuHelp.askForString("Write the warrior's name");
+
             for(int i = 0; i < customizedParty.size(); i ++){
                 if(wizardName.equals(customizedParty.get(i).getName())){
                     wizardName = wizardName + "Jr";
                 }
             }
-            System.out.println("Insert health (between 50-100 points)");
-            int wizardHp = scanner.nextInt();
-            while (wizardHp < 50 || wizardHp > 100) {
-                System.err.println("health points must be a number between 100-200 ");
-                wizardHp = scanner.nextInt();
-            }
-            System.out.println("Insert mana value (between 10-50 points)");
-            int mana = scanner.nextInt();
-            while (mana < 10 || mana > 50) {
-                System.err.println("Mana must be a number between 10-50 ");
-                mana = scanner.nextInt();
-            }
-            System.out.println("Insert intelligence value (between 1-10 points)");
-            int intelligence = scanner.nextInt();
-            while (intelligence < 1 || intelligence > 10) {
-                System.err.println("Intelligence must be a number between 1-10 ");
-                intelligence = scanner.nextInt();
-            }
+
+            int wizardHp = MenuHelp.askForIntInRange("Insert health (between 50-100 points)", 50, 100);
+
+            int mana = MenuHelp.askForIntInRange("Insert mana value (between 10-50 points)", 10, 50);
+
+            int intelligence = MenuHelp.askForIntInRange("Insert intelligence value (between 1-10 points)", 1, 10);
+
             customizedParty.add(new Wizard(wizardName, wizardHp, mana, intelligence));
         }
 

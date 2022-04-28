@@ -7,14 +7,15 @@ import java.util.Scanner;
 public class MenuHelp {
 
     //Print List
-    public static void printList(String[] optionsList){
-        for(int i = 0; i < optionsList.length; i++){
-            System.out.println("\t\t" + (i+1) + "." + optionsList[i]);
+    public static void printList(String[] optionsList) {
+        for (int i = 0; i < optionsList.length; i++) {
+            System.out.println("\t\t" + (i + 1) + "." + optionsList[i]);
         }
     }
-    public static void printList(List<Character> optionsList){
-        for(int i = 0; i<optionsList.size(); i++) {
-            System.out.println("\t" + (i+1) + ". " + optionsList.get(i));
+
+    public static void printList(List<Character> optionsList) {
+        for (int i = 0; i < optionsList.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + optionsList.get(i));
         }
     }
 
@@ -27,9 +28,9 @@ public class MenuHelp {
         int response = askForIntInRange("\n-> Type a number from 1 to " + (optionsList.length), 1, optionsList.length);
         //Show selected option
         if (response > 0 && response < optionsList.length + 1) {
-            System.out.println("You have selected option " + response + ": " + optionsList[response-1] + "\n");
+            System.out.println("You have selected option " + response + ": " + optionsList[response - 1] + "\n");
         }
-        return response-1;
+        return response - 1;
     }
 
     public static Character selectOption(String instruction, List<Character> optionsList) {
@@ -40,9 +41,9 @@ public class MenuHelp {
         int response = askForIntInRange("\n-> Type a number from 1 to " + optionsList.size(), 1, optionsList.size());
         //Show selected option
         if (response > 0 && response < optionsList.size() + 1) {
-            System.out.println("You have selected option " + response + ": " + optionsList.get(response-1).getName() + "\n");
+            System.out.println("You have selected option " + response + ": " + optionsList.get(response - 1).getName() + "\n");
         }
-        return optionsList.get(response-1);
+        return optionsList.get(response - 1);
     }
 
     // Ask for enter
@@ -61,7 +62,7 @@ public class MenuHelp {
         do {
             try {
                 entry = scanner.nextLine();
-                while(entry.length() < 1 || entry.length() > 20) {
+                while (entry.length() < 1 || entry.length() > 20) {
                     System.err.println("Please introduce 1 to 20 characters");
                     entry = scanner.nextLine();
                 }
@@ -70,7 +71,7 @@ public class MenuHelp {
                 System.out.println("You did not introduce a valid text");
                 scanner.next();
             }
-        } while(!done);
+        } while (!done);
         return entry;
     }
 
@@ -83,18 +84,35 @@ public class MenuHelp {
             try {
                 System.out.println(question);
                 entry = scanner.nextInt();
-                while(entry < min || entry > max) {
+                while (entry < min || entry > max) {
                     System.err.println(entry + " is not a valid option");
                     entry = scanner.nextInt();
                 }
                 done = true;
-            } catch(Exception e){
+            } catch (Exception e) {
                 System.err.println("You did not introduce a valid integer. Please try again.");
                 scanner.next();
             }
-        }while(!done);
+        } while (!done);
         return entry;
     }
 
+    // Ask for an integer
+    public static int askForInt(String question) {
+        boolean done = false;
+        int entry = 0;
+        Scanner scanner = new Scanner(System.in);
+        do {
+            try {
+                System.out.println(question);
+                entry = scanner.nextInt();
+                done = true;
+            } catch (Exception e) {
+                System.out.println("\nYou did not introduce a valid integer. Please try again.");
+                scanner.next();
+            }
+        } while (!done);
+        return entry;
+    }
 
 }
