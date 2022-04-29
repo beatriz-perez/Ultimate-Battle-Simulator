@@ -13,6 +13,7 @@ public class MusicPlayer {
             clip.open(audioInputStream);
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-10.0f); // Reduce volume by 10 decibels
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
             clip.start();
         } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             System.out.println("Error with playing sound.");
