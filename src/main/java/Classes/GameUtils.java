@@ -73,7 +73,7 @@ public class GameUtils {
             customizedParty.add(new Warrior(warriorName, warriorHp, stamina, strength));
         }
         while (customizedParty.size() < warriorsNumber + wizardsNumber) {
-            String wizardName = MenuHelp.askForString("Write the warrior's name");
+            String wizardName = MenuHelp.askForString("Write the wizard's name");
 
             for(int i = 0; i < customizedParty.size(); i ++){
                 if(wizardName.equals(customizedParty.get(i).getName())){
@@ -106,9 +106,9 @@ public class GameUtils {
         while (scanner.hasNextLine()) {
             data = scanner.nextLine();
             String[] charData = data.split(",");
-            if(charData[0].equals("Warrior")){
+            if(charData[0].toLowerCase().equals("warrior")){
                 csvParty.add(new Warrior(charData[1], Integer.parseInt(charData[2]), Integer.parseInt(charData[3]), Integer.parseInt(charData[4])));
-            }else if(charData[0].equals("Wizard")){
+            }else if(charData[0].toLowerCase().equals("wizard")){
                 csvParty.add(new Wizard(charData[1], Integer.parseInt(charData[2]), Integer.parseInt(charData[3]), Integer.parseInt(charData[4])));
             }
         }
