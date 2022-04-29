@@ -158,7 +158,9 @@ public class MainMenu {
         switch(battleResult){
             case 0:
                 System.out.println("\n");
+                System.out.print(TextColor.WHITE_BOLD_BRIGHT);
                 System.out.println("There was a tie!" );
+                System.out.print(TextColor.RESET);
                 System.out.println("No party won, no party lost his fighter." );
                 break;
             case 1:
@@ -174,7 +176,9 @@ public class MainMenu {
                 break;
             case 2:
                 System.out.println("\n");
+                System.out.print(TextColor.WHITE_BOLD_BRIGHT);
                 System.out.println(p2.getCurrentCombatant().getName() + " from " + p2.getName() + "'s party has won this battle. Congratulations!" );
+                System.out.print(TextColor.RESET);
                 p2.winBattle();
                 System.out.println(p1.getName() + "'s party lost his fighter " + p1.getCurrentCombatant().getName());
                 p1.loseBattle();
@@ -219,11 +223,13 @@ public class MainMenu {
 
         Player winner = p1.getParty().size() > 0 ? p1 : p2;
 
-        System.out.println("\n");
         System.out.print(TextColor.GREEN);
+        System.out.println("\n");
         System.out.println("After " + battlesPlayed + " great battles one of the parties has run out of members.");
         System.out.println("This means the war has ended and we have a winner...");
         System.out.println("\n");
+        MenuHelp.askForEnter("Press \"ENTER\" to continue...");
+
         Arts.fireWorks();
         System.out.print(TextColor.GREEN_BOLD_BRIGHT);
         System.out.println("Congratulations " + winner.getName() + " for you are the final winner!!!");
@@ -231,6 +237,8 @@ public class MainMenu {
         Arts.fireWorks();
         System.out.println("\n");
         System.out.print(TextColor.RESET);
+        MenuHelp.askForEnter("Press \"ENTER\" to continue...");
+
         exportOrContinue(winner.getParty());
 
     }
